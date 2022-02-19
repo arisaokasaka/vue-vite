@@ -1,6 +1,6 @@
 <template>
   <header>
-    <a>Vue ToDo</a>
+    <p>Vue ToDo</p>
   </header>
 </template>
 
@@ -9,6 +9,8 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
+  height: 54px;
+  text-align: center;
   background-color: aquamarine;
 }
 </style>
