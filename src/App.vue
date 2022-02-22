@@ -1,19 +1,17 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import Main from './components/Main.vue';
-// import HelloWorld from './components/HelloWorld.vue'
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
-import Spacer from './components/Spacer.vue';
+import Content from './components/Content.vue';
 
 </script>
 
 <template>
   <Header />
-  <Spacer :top="40" />
-  <Main />
-  <Spacer :top="60" />
+  <!-- <Spacer :top="40" /> -->
+  <Content />
+  <!-- <Spacer :top="60" /> -->
   <Footer />
 </template>
 
