@@ -4,14 +4,15 @@
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
 import Content from './components/Content.vue';
+import Spacer from './components/Spacer.vue';
 
 </script>
 
 <template>
   <Header />
-  <!-- <Spacer :top="40" /> -->
+  <Spacer :top="40" />
   <Content />
-  <!-- <Spacer :top="60" /> -->
+  <Spacer :top="60" />
   <Footer />
 </template>
 

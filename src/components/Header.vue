@@ -11,6 +11,7 @@ header {
   width: 100%;
   height: 54px;
   text-align: center;
-  background-color: aquamarine;
+  color: #ffffff;
+  background-color: #42b983;
 }
 </style>
