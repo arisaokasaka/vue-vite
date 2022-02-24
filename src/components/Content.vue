@@ -1,51 +1,40 @@
-<script>
+<script lang="ts" setup>
 import { onUpdated, ref } from 'vue'
 import { Colors } from '../color';
 import Button from './Button.vue'
-export default {
-    setup() {
-        let input = "";
-        const onChangeInput = (e) => input = e.target.value;
-        const activeList = ref([]);
-        const doneList = ref([]);
-        const addItem = () => {
-            if (input) {
-                activeList.value.push(input);
-            }
-        };
-        const convertItem = (currentIndex, convertType) => {
-            switch (convertType) {
-                case "toActive":
-                    activeList.value.push(doneList.value[currentIndex]);
-                    doneList.value.splice(currentIndex, 1);
-                    break;
-                case "toDone":
-                    doneList.value.push(activeList.value[currentIndex]);
-                    activeList.value.splice(currentIndex, 1);
-                    break;
-            }
-        };
-        const deleteItem = (index) => {
-            doneList.value.splice(index, 1);
-        };
 
-        onUpdated(() => {
-            input = "";
-        });
-        return {
-            Colors,
-            input,
-            onChangeInput,
-            activeList,
-            doneList,
-            addItem,
-            deleteItem,
-            convertItem
+let input = "";
+const activeList = ref([]);
+const doneList = ref([]);
 
-        };
-    },
-    components: { Button }
-}
+const onChangeInput = (e) => input = e.target.value;
+
+const addItem = () => {
+    if (input) {
+        activeList.value.push(input);
+    }
+};
+
+const deleteItem = (index) => {
+    doneList.value.splice(index, 1);
+};
+
+const convertItem = (currentIndex, convertType) => {
+    switch (convertType) {
+        case "toActive":
+            activeList.value.push(doneList.value[currentIndex]);
+            doneList.value.splice(currentIndex, 1);
+            break;
+        case "toDone":
+            doneList.value.push(activeList.value[currentIndex]);
+            activeList.value.splice(currentIndex, 1);
+            break;
+    }
+};
+
+onUpdated(() => {
+    input = "";
+});
 </script>
 
 <template>
@@ -53,7 +42,7 @@ export default {
         <div class="input-area">
             <input :value="input" @change="onChangeInput" type="text" />
             <Button
-                @onClick="addItem"
+                @emitted-click="addItem"
                 text="Add"
                 :font-color="Colors.white"
                 :bg-color="Colors.primary.main"
@@ -63,7 +52,7 @@ export default {
             <div class="item" v-for="item, index in activeList">
                 <p>{{ item }}</p>
                 <Button
-                    @onClick="convertItem(index, 'toDone')"
+                    @emitted-click="convertItem(index, 'toDone')"
                     text="Done"
                     :font-color="Colors.primary.main"
                     :bg-color="Colors.white"
@@ -78,13 +67,13 @@ export default {
                     <p>{{ item }}</p>
                     <div class="btn-container">
                         <Button
-                            @onClick="convertItem(index, 'toActive')"
+                            @emitted-click="convertItem(index, 'toActive')"
                             text="Reopen"
                             :font-color="Colors.secondary.main"
                             :bg-color="Colors.white"
                         />
                         <Button
-                            @onClick="deleteItem(index)"
+                            @emitted-click="deleteItem(index)"
                             text="Delete"
                             :font-color="Colors.white"
                             :bg-color="Colors.secondary.main"
