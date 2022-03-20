@@ -1,22 +1,19 @@
 <script lang="ts" setup>
-
 defineProps({
     text: String,
     fontColor: String,
     bgColor: String,
-    onClick: Function,
-
 })
 
 defineEmits([
-    'onClick'
+    'emitted-click'
 ])
-
 </script>
+
 <template>
     <button
+        @click="$emit('emitted-click')"
         :style="{ 'color': `${fontColor}`, 'background-color': `${bgColor}` }"
-        @click="$emit('onClick')"
         type="button"
     >{{ text }}</button>
 </template>
